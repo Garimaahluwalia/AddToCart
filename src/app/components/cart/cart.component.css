@@ -1,0 +1,22 @@
+.product-item img {
+    height: 160px !important;
+}
+a.btn.btn-outline-secondary {
+    margin-top: 40px;
+}
+
+
+/* .column {
+    margin-top: 22px;
+}
+a.btn.btn-primary {
+    margin-right: 25px;
+}
+
+input.form-control.ng-untouched.ng-pristine.ng-valid {
+    width: 20%;
+}
+
+.form-check-inline{
+    width: 20%;
+} */

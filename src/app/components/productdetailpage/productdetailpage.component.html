@@ -1,0 +1,61 @@
+<div class="container">
+    <button type="button" class="btn btn-primary" routerLink="/products">Product</button>
+    <div class="card" *ngIf="details_product ">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"> <img src="{{selectedImage}}" /></div>
+                    </div>
+
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab">
+                                <img *ngFor="let ig of details_product.images" [src]="ig"
+                                    (click)="selectedImage = ig" /></a> </li>
+                    </ul>
+                </div>
+                <div class="details col-md-6">
+                    <h3 class="product-title">{{details_product.title}}</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <p class="card-text-rating"> {{details_product.rating}} <ngb-rating [max]="5"
+                                [(rate)]="details_product.rating" [readonly]="true"></ngb-rating></p>
+                    </div>
+                    <p class="product-description">description : {{details_product.description}}</p>
+                    <h4 class="price">current price:
+                        &#8377;{{(details_product.price + (details_product.price/100*details_product.discountPercentage))
+                        |
+                        number:'1.1-2' }}</h4>
+                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                    <div class="action">
+                        <button class="add-to-cart btn btn-default" type="button"
+                            *ngIf="!isProductExistsInCart; else showRemoveButton" (click)="addproduct()">add to
+                            cart</button>
+                        <ng-template #showRemoveButton>
+                            <button class="add-to-cart btn btn-default" type="button"
+                                (click)="removeProduct()">Remove</button>
+                        </ng-template>
+                        <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                        <app-quantity></app-quantity>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+

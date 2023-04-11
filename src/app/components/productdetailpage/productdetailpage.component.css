@@ -1,0 +1,8 @@
+.quantity {
+    margin-top: 35px;
+    padding-left: 5px;
+}
+
+select.form-control {
+    width: 7%;
+}

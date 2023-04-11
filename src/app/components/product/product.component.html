@@ -1,0 +1,30 @@
+<div class="main">
+    <h1 class="products"> Products </h1>
+    <div class="container">
+        <div class="row">
+            <div class="posts col-lg-3 col-md-3 col-sm-3" *ngFor="let details of product_data">
+                <a [routerLink]="['productdetails' , details.id]">
+                    <div class="card" style="width:100%;">
+                        <img src="{{details.thumbnail}}" class="card-img-top" alt="...">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{details.title}}</h5>
+                            <p class="card-text">{{details.brand}}</p>
+                            <p class="card-text-rating"> {{details.rating}} <ngb-rating [max]="5"
+                                    [(rate)]="details.rating" [readonly]="true"></ngb-rating></p>
+                            <div class="price-data">
+                                <p class="card-text-line"> &#8377;{{details.price}}</p>
+                                <p class="card-text">
+                                    &#8377;{{(details.price-(details.price/100*details.discountPercentage)) |
+                                    number:'1.1-1' }}
+                                </p>
+                            </div>
+                            <p class="card-text">Free delivery</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

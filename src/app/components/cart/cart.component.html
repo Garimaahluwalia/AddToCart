@@ -1,0 +1,72 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container padding-bottom-3x mb-1">
+    <div class="table-responsive shopping-cart">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Discount</th>
+                    <th class="text-center"><a class="btn btn-sm btn-outline-danger" (click)="clearCart()">Clear
+                            Cart</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartproducts of cartItems; let i = index">
+                    <td>
+                        <div class="product-item">
+                            <a class="product-thumb"><img src="{{cartproducts.thumbnail}}"
+                                    [routerLink]="['/products/productdetails', cartproducts.id]"></a>
+                            <div class="product-info">
+                                <h4 class="product-title"><a routerLink="/productdetails">{{cartproducts.title}}</a>
+                                </h4>
+
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="cartproducts.quantity" [ngModelOptions]="{standalone: true}" min="1"
+                               type="number" value="{{ cartproducts.Quantity}}" name="" class="form-control"
+                               (change)="updateQuatity(cartproducts.quantity ,i)" />
+                               <div class="col-2 pr-0">
+                                <div #subTotalWrap>  {{( cartproducts.quantity * cartproducts.price-(cartproducts.price/100*cartproducts.discountPercentage))  }} </div>
+              </div>
+                   </td>
+                    <td class="text-center">
+                        <!-- <app-quantity [inputnumber]="cartproducts.quantity" (updateQuatity)="updateQuatity($event, i)"></app-quantity> -->
+                    </td>
+                    <td class="text-center text-lg text-medium">
+                        ${{(cartproducts.price-(cartproducts.price/100*cartproducts.discountPercentage))
+                        |
+                        number:'1.1-2' }}</td>
+                    <td class="text-center text-lg text-medium">${{cartproducts.discountPercentage}}</td>
+                    <td class="text-center"><a class="remove-from-cart" data-toggle="tooltip" title=""
+                            (click)="removeCartItem(i)" data-original-title="Remove item"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+               
+
+            </tbody>
+        </table>
+    </div>
+    <div class="shopping-cart-footer">
+        <div class="column">
+
+        </div>
+        <div class="column text-lg">
+            <h2>Subtotal ({{cartItems.length}}items ): ${{subTotalAmount | number:'1.1-2'}} </h2><span
+                class="text-medium"></span>
+        </div>
+    </div>
+    <div class="shopping-cart-footer">
+
+        <div class="column">
+            <a class="btn btn-success" href="#">Checkout</a>
+        </div>
+    </div>
+
+    <div class="column"><a class="btn btn-outline-secondary" routerLink="/products"><i class="icon-arrow-left"></i>Back
+            to Shopping</a></div>
+</div>
